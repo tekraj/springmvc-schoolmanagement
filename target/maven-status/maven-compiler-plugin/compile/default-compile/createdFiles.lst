@@ -1,0 +1,6 @@
+com/schoolmanagement/resources/JakartaEE8Resource.class
+com/schoolmanagement/bean/Student.class
+com/schoolmanagement/dao/StudentDao.class
+com/schoolmanagement/dao/StudentDao$StudentMapper.class
+com/schoolmanagement/controllers/HomeController.class
+com/schoolmanagement/controllers/StudentController.class
