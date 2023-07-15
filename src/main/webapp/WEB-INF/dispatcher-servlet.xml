@@ -12,9 +12,18 @@
                            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
                            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-    <context:component-scan base-package="com.schoolmanagement.controllers" />
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+    <context:component-scan base-package="com.schoolmanagement" />
     <mvc:annotation-driven />
-
+    <mvc:view-controller path="/" view-name="index" />
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/login"/>
+             <mvc:exclude-mapping path="/resources/**"/>
+            <bean class="com.schoolmanagement.interceptor.AuthenticationInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.InternalResourceViewResolver"
           p:prefix="/WEB-INF/jsp/"
@@ -22,7 +31,7 @@
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">   
         <property name="driverClassName" value="com.mysql.jdbc.Driver"></property>   
-        <property name="url" value="jdbc:mysql://localhost:3306/test"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/schoolmanagement"></property>
         <property name="username" value="root"></property>   
         <property name="password" value="root@123"></property>    
     </bean>   
@@ -31,8 +40,11 @@
         <constructor-arg ref="dataSource" />   
     </bean>   
      
-    <bean id="studentDao" class="com.schoolmanagement.dao.StudentDao">   
+    <bean id="studentDao" class="com.schoolmanagement.dao.StudentImpl">   
         <constructor-arg ref="jdbcTemplate" />   
     </bean>      
-
+    <bean id="userDao" class="com.schoolmanagement.dao.UserImpl">   
+        <constructor-arg ref="jdbcTemplate" />   
+    </bean> 
+    
 </beans>

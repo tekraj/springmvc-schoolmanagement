@@ -1,15 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<html>
-    <jsp:include page="/WEB-INF/jsp/head.jsp" />
-
-    <body>
-        <jsp:include page="/WEB-INF/jsp/header.jsp" />
-
-        <main>
-            <div class="container mt-5">
-                <h1>Edit Student</h1>
-                <form action="/schoolmanagement/students/edit/${student.id}" method="post">
+<%@ taglib prefix="custom" tagdir="/WEB-INF/tags" %>
+<custom:layout title="Student" >
+    <jsp:attribute name="content">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Edit Student</h6>
+            </div>
+            <div class="card-body">
+                <form action="<c:url value="/students/edit/${student.id}"/>" method="post">
                     <div class="form-group">
                         <label for="name">Name:</label>
                         <input type="text" class="form-control" id="name" name="name" value="${student.name}" required>
@@ -37,12 +35,9 @@
                             <option value="Female" ${student.gender == 'Female' ? 'selected' : ''}>Female</option>
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update</button>
-                </form>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">Update</button>
                 </form>
             </div>
-        </main>
-
-        <jsp:include page="/WEB-INF/jsp/footer.jsp" />
-    </body>
-</html>
+        </div>
+    </jsp:attribute>
+</custom:layout>

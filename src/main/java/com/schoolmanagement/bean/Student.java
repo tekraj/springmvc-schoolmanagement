@@ -1,6 +1,7 @@
 package com.schoolmanagement.bean;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Student {
 
@@ -11,6 +12,24 @@ public class Student {
     private Date dateOfBirth;
     private String address;
     private String gender;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
+
+    public Timestamp getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Timestamp createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Timestamp getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Timestamp updatedAt) {
+        this.updatedAt = updatedAt;
+    }
 
     public int getId() {
         return id;
@@ -67,5 +86,5 @@ public class Student {
     public void setGender(String gender) {
         this.gender = gender;
     }
-    
+
 }
